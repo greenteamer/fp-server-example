@@ -1,43 +1,24 @@
-import { pipe } from "@effect-ts/core";
-import * as T from "@effect-ts/core/Effect";
-import { tag } from "@effect-ts/core/Has";
-// import { CARS_HEADERS, CARS_URL } from "../constants.js";
-import { safeAxiosGet } from "../utils/safe-fetch.js";
-import { AxiosResponse } from "axios";
+import * as RTE from "fp-ts/ReaderTaskEither";
+import { pipe } from "fp-ts/lib/function.js";
+import { CarService } from "../services/cars/car-service";
+import {
+  vpicCarMakesDecoder,
+  vpicCarManufacturersDecoder,
+  vpicResponseDecoder,
+} from "../api/vpic/codec";
 
-interface CarMake {
-  Make_ID: number;
-  Make_Name: string;
-}
+export const resolveCarMakes = pipe(
+  RTE.ask<CarService>(),
+  RTE.chainTaskEitherK((_) => _.getMakes()),
+  RTE.chainEitherKW((res) => vpicResponseDecoder.decode(res)),
+  RTE.map((i) => i.Results),
+  RTE.chainEitherKW((value) => vpicCarMakesDecoder.decode(value))
+);
 
-interface CarService {
-  fetchCarTypes: () => T.Effect<unknown, Error, AxiosResponse<CarMake[]>>;
-}
-const CarService = tag<CarService>();
-
-const fetchCarTypes = () =>
-  T.accessServiceM(CarService)((_) => _.fetchCarTypes());
-
-export const resolveCars = () =>
-  pipe(
-    fetchCarTypes(),
-    T.fold(
-      (error) => [],
-      (success) => success.data
-    ),
-    T.provideService(CarService)({
-      fetchCarTypes: () =>
-        safeAxiosGet(
-          `https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json`,
-          {
-            method: "GET",
-          }
-        ),
-      // safeAxiosGet(`${CARS_URL}/types`, {
-      //   method: "GET",
-      //   ...CARS_HEADERS,
-      // }),
-    }),
-
-    T.runPromise
-  );
+export const resolveCarManufacturers = pipe(
+  RTE.ask<CarService>(),
+  RTE.chainTaskEitherK((_) => _.getManufacturers()),
+  RTE.chainEitherKW((res) => vpicResponseDecoder.decode(res)),
+  RTE.map((i) => i.Results),
+  RTE.chainEitherKW((value) => vpicCarManufacturersDecoder.decode(value))
+);

@@ -1,0 +1,1 @@
+{"version":3,"file":"safe-fetch.d.ts","sourceRoot":"","sources":["../../../../src/common/utils/safe-fetch.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,MAAM,kBAAkB,CAAC;AACvC,OAAc,EAAE,kBAAkB,EAAE,aAAa,EAAE,MAAM,OAAO,CAAC;AACjE,OAAO,EAAE,OAAO,EAAE,MAAM,mBAAmB,CAAC;AAE5C,eAAO,MAAM,YAAY,QAAS,MAAM,WAAW,kBAAkB,wDAWlE,CAAC"}

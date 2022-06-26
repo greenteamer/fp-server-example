@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "clean": "rimraf lib",
     "start:dev": "nodemon",
     "build": "yarn clean && tsc -b tsconfig.json",
     "build:watch": "tsc -b tsconfig.json --watch",
-    "start": "node dist/src/index.js"
+    "start": "node dist/src/server.js"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
@@ -19,6 +18,8 @@
   "dependencies": {
     "@effect-ts/core": "^0.60.2",
     "axios": "^0.27.2",
+    "fp-ts": "^2.12.1",
+    "io-ts": "^2.2.16",
     "module-alias": "^2.2.2"
   }
 }

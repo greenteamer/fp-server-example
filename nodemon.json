@@ -1,6 +1,6 @@
 {
-  "watch": ["lib"],
+  "watch": ["dist"],
   "ext": ".ts,.js",
   "ignore": [],
-  "exec": "node ./lib/src/index.js"
+  "exec": "node ./dist/src/server.js"
 }

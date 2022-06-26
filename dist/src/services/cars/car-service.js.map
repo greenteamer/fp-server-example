@@ -1,0 +1,1 @@
+{"version":3,"file":"car-service.js","sourceRoot":"","sources":["../../../../src/services/cars/car-service.ts"],"names":[],"mappings":";;;AAGA,4CAAgD;AAChD,8DAA6D;AAOhD,QAAA,UAAU,GAAe;IACpC,QAAQ;QACN,OAAO,IAAA,yBAAY,EAAC,IAAA,gBAAU,EAAC,aAAa,CAAC,CAAC,CAAC;IACjD,CAAC;IACD,gBAAgB;QACd,OAAO,IAAA,yBAAY,EAAC,IAAA,gBAAU,EAAC,qBAAqB,CAAC,CAAC,CAAC;IACzD,CAAC;CACF,CAAC"}

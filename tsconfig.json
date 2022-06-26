@@ -2,7 +2,6 @@
   "compilerOptions": {
     "moduleDetection": "force",
     "downlevelIteration": true,
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -27,23 +26,26 @@
     "strictNullChecks": true,
     //
 
-    // "sourceMap": true,
-    // "composite": true,
-    "declaration": false,
-    // "declarationMap": true,
-    "resolveJsonModule": true,
-    "target": "ES2021",
-    "module": "ES6",
+    // new
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es6",
     "moduleResolution": "node",
+    "sourceMap": true,
+
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "resolveJsonModule": true,
     "incremental": true,
     "removeComments": false,
     "baseUrl": ".",
-    "rootDir": ".",
-    "outDir": "lib"
+    "outDir": "dist"
     // "paths": {
-    //   "#app/*": ["./src/*"]
+    //   "@app/*": ["./src/*"]
     // }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["node_modules", "dist"]
 }
