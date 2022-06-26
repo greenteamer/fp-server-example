@@ -29,7 +29,6 @@ const function_js_1 = require("fp-ts/lib/function.js");
 const codec_1 = require("../api/vpic/codec");
 const map_decoder_error_1 = require("../common/utils/map-decoder-error");
 exports.resolveCarMakes = (0, function_js_1.pipe)(RTE.ask(), RTE.chainTaskEitherK((_) => _.getMakes()), RTE.chainEitherKW((res) => {
-    console.log("[resolveCarMakes] res: ", res);
     return (0, map_decoder_error_1.mapDecoderError)("[makes response]")(codec_1.vpicResponseDecoder.decode(res.data));
 }), RTE.chainEitherKW((value) => (0, map_decoder_error_1.mapDecoderError)("[makes result]")(codec_1.vpicCarMakesDecoder.decode(value.Results))));
 exports.resolveCarManufacturers = (0, function_js_1.pipe)(RTE.ask(), RTE.chainTaskEitherK((_) => _.getManufacturers()), RTE.chainEitherKW((res) => (0, map_decoder_error_1.mapDecoderError)("[manufacturers response]")(codec_1.vpicResponseDecoder.decode(res.data))), RTE.chainEitherKW((value) => (0, map_decoder_error_1.mapDecoderError)("[manufacturers result]")(codec_1.vpicCarManufacturersDecoder.decode(value.Results))));

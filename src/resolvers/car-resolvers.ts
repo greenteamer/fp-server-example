@@ -12,7 +12,6 @@ export const resolveCarMakes = pipe(
   RTE.ask<CarService>(),
   RTE.chainTaskEitherK((_) => _.getMakes()),
   RTE.chainEitherKW((res) => {
-    console.log("[resolveCarMakes] res: ", res);
     return mapDecoderError("[makes response]")(
       vpicResponseDecoder.decode(res.data)
     );
