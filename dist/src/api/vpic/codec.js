@@ -28,7 +28,7 @@ const D = __importStar(require("io-ts/Decoder"));
 exports.vpicResponseDecoder = D.struct({
     Count: D.number,
     Message: D.string,
-    Results: D.UnknownRecord,
+    Results: D.UnknownArray,
 });
 exports.vpicCarMakesDecoder = D.array(D.struct({
     Make_ID: D.number,

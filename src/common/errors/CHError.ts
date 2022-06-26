@@ -4,7 +4,7 @@ export class CHError {
   readonly message: string;
   private constructor(marker: string, error: Error) {
     this.error = error;
-    this.message = `${marker} \n${error.message}`;
+    this.message = `${marker}: ${error.message}`;
   }
 
   static of(marker: string, error: Error) {

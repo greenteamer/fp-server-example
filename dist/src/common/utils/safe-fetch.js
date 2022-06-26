@@ -22,6 +22,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -30,7 +39,11 @@ exports.safeAxiosGet = void 0;
 const TE = __importStar(require("fp-ts/TaskEither"));
 const axios_1 = __importDefault(require("axios"));
 const CHError_1 = require("../errors/CHError");
-const safeAxiosGet = (url, config) => TE.tryCatch(() => axios_1.default.get(url, config), (error) => {
+const safeAxiosGet = (url, config) => TE.tryCatch(() => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield axios_1.default.get(url, config);
+    console.log(result);
+    return result;
+}), (error) => {
     return error instanceof Error
         ? CHError_1.CHError.of("fetchCarTypesFn", error)
         : CHError_1.CHError.of("fetchCarTypesFn", new Error("fetchCarTypesFn unknown Error"));

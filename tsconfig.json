@@ -40,7 +40,7 @@
     "resolveJsonModule": true,
     "incremental": true,
     "removeComments": false,
-    "baseUrl": ".",
+    // "baseUrl": "./",
     "outDir": "dist"
     // "paths": {
     //   "@app/*": ["./src/*"]

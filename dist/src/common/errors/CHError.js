@@ -5,7 +5,7 @@ class CHError {
     constructor(marker, error) {
         this._tag = "CHError";
         this.error = error;
-        this.message = `${marker} \n${error.message}`;
+        this.message = `${marker}: ${error.message}`;
     }
     static of(marker, error) {
         return new CHError(marker, error);

@@ -48,12 +48,14 @@ http
     .createServer((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     (0, function_1.pipe)(req, (req) => {
         return req.url;
-    }, O.fromNullable, E.fromOption(() => CHError_1.CHError.of("server parse url", new Error("No url received."))), E.chainW((urlString) => {
+    }, O.fromNullable, E.fromOption(() => CHError_1.CHError.of("[server]", new Error("Url should not be a null."))), E.chainW((url) => {
+        // const t = url.split("/")[1];
+        return E.right(url);
+    }), E.chainW((urlString) => {
         // const url = new URL(`http://${req.headers.host}${req.url}`);
         return (0, map_decoder_error_1.mapDecoderError)("server")(request_urls_codec_1.vehiclesUrlDecoder.decode(urlString));
-    }), RTE.fromEither, 
-    // RTE.chainEitherKW,
-    RTE.chainW((url) => {
+    }), RTE.fromEither, RTE.chainW((url) => {
+        console.log("url: ", url);
         switch (url) {
             case "/api/vehicles/makes":
                 return resolvers_1.resolvers.vehicles.makes;
@@ -69,7 +71,7 @@ http
         console.log(data);
         res.statusCode = 200;
         res.setHeader("Content-Type", "application/json");
-        res.end(data);
+        res.end(JSON.stringify(data));
     }), (passDeps) => passDeps(car_service_1.CarService), (invoke) => invoke());
 }))
     .listen(port, hostname, () => {

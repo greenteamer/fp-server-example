@@ -2,11 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CHError = void 0;
 class CHError {
-    constructor(message) {
+    constructor(marker, error) {
         this._tag = "CHError";
+        this.error = error;
+        this.message = `${marker} \n${error.message}`;
     }
-    static of(message) {
-        return new CHError(message);
+    static of(marker, error) {
+        return new CHError(marker, error);
     }
 }
 exports.CHError = CHError;

@@ -6,7 +6,7 @@ export class CHDecoderError {
   readonly message: string;
   private constructor(marker: string, error: D.DecodeError) {
     this.error = error;
-    this.message = `${marker} \n${D.draw(error)}`;
+    this.message = `${marker}: ${D.draw(error)}`;
   }
 
   static of(marker: string, error: D.DecodeError) {

@@ -3,7 +3,7 @@ import { CarMake, CarManufacturers } from "./types";
 export declare const vpicResponseDecoder: D.Decoder<unknown, {
     Count: number;
     Message: string;
-    Results: unknown;
+    Results: unknown[];
 }>;
 export declare const vpicCarMakesDecoder: D.Decoder<unknown, CarMake[]>;
 export declare const vpicCarManufacturersDecoder: D.Decoder<unknown, CarManufacturers[]>;

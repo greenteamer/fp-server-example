@@ -6,19 +6,33 @@ import {
   vpicCarManufacturersDecoder,
   vpicResponseDecoder,
 } from "../api/vpic/codec";
+import { mapDecoderError } from "../common/utils/map-decoder-error";
 
 export const resolveCarMakes = pipe(
   RTE.ask<CarService>(),
   RTE.chainTaskEitherK((_) => _.getMakes()),
-  RTE.chainEitherKW((res) => vpicResponseDecoder.decode(res)),
-  RTE.map((i) => i.Results),
-  RTE.chainEitherKW((value) => vpicCarMakesDecoder.decode(value))
+  RTE.chainEitherKW((res) => {
+    console.log("[resolveCarMakes] res: ", res);
+    return mapDecoderError("[makes response]")(
+      vpicResponseDecoder.decode(res.data)
+    );
+  }),
+  RTE.chainEitherKW((value) =>
+    mapDecoderError("[makes result]")(vpicCarMakesDecoder.decode(value.Results))
+  )
 );
 
 export const resolveCarManufacturers = pipe(
   RTE.ask<CarService>(),
   RTE.chainTaskEitherK((_) => _.getManufacturers()),
-  RTE.chainEitherKW((res) => vpicResponseDecoder.decode(res)),
-  RTE.map((i) => i.Results),
-  RTE.chainEitherKW((value) => vpicCarManufacturersDecoder.decode(value))
+  RTE.chainEitherKW((res) =>
+    mapDecoderError("[manufacturers response]")(
+      vpicResponseDecoder.decode(res.data)
+    )
+  ),
+  RTE.chainEitherKW((value) =>
+    mapDecoderError("[manufacturers result]")(
+      vpicCarManufacturersDecoder.decode(value.Results)
+    )
+  )
 );

@@ -29,7 +29,7 @@ class CHDecoderError {
     constructor(marker, error) {
         this._tag = "CHDecoderError";
         this.error = error;
-        this.message = `${marker} \n${D.draw(error)}`;
+        this.message = `${marker}: ${D.draw(error)}`;
     }
     static of(marker, error) {
         return new CHDecoderError(marker, error);

@@ -1,0 +1,1 @@
+{"version":3,"file":"CHNetworkError.d.ts","sourceRoot":"","sources":["../../../../src/common/errors/CHNetworkError.ts"],"names":[],"mappings":"AAAA,qBAAa,cAAc;IACzB,QAAQ,CAAC,IAAI,oBAAoB;IACjC,QAAQ,CAAC,KAAK,EAAE,KAAK,CAAC;IACtB,QAAQ,CAAC,OAAO,EAAE,MAAM,CAAC;IACzB,OAAO;IAKP,MAAM,CAAC,EAAE,CAAC,MAAM,EAAE,MAAM,EAAE,KAAK,EAAE,KAAK;CAGvC"}

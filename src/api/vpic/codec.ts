@@ -1,10 +1,10 @@
 import * as D from "io-ts/Decoder";
 import { CarMake, CarManufacturers, VpicResponse } from "./types";
 
-export const vpicResponseDecoder = D.struct<VpicResponse<unknown>>({
+export const vpicResponseDecoder = D.struct<VpicResponse<unknown[]>>({
   Count: D.number,
   Message: D.string,
-  Results: D.UnknownRecord,
+  Results: D.UnknownArray,
 });
 
 export const vpicCarMakesDecoder = D.array<CarMake>(
